@@ -14,7 +14,7 @@ export default function MainContent() {
     setIsActive(true);
     var playerId = Math.floor(Math.random() * 3 + 1);
     axios
-      .get(`http://localhost:5286/api/Player/${playerId}`)
+      .get(`http://localhost:5176/api/player/${playerId}`)
       .then((res) => {
         console.log(isActive);
         console.log(res.data);
