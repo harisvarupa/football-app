@@ -12,7 +12,7 @@ export default function MainContent() {
   const getRandomPlayer = () => {
     setShowImage(false);
     setIsActive(true);
-    var playerId = Math.floor(Math.random() * 3 + 1);
+    var playerId = Math.floor(Math.random() * 5 + 1);
     axios
       .get(`http://localhost:5176/api/player/${playerId}`)
       .then((res) => {

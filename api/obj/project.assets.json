@@ -4548,6 +4548,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.OpenApi >= 8.0.4",
+      "Microsoft.EntityFrameworkCore >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.7",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.7",
@@ -4560,11 +4561,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\api.csproj",
+      "projectUniqueName": "c:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\api.csproj",
+      "projectPath": "c:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\api.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\obj\\",
+      "outputPath": "c:\\Users\\admin\\Desktop\\Alphalink\\football-app\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4601,6 +4602,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.4, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.0.7, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
