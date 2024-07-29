@@ -15,5 +15,7 @@ namespace api.Models
         public bool SerieA { get; set; }
         public bool Bundesliga { get; set; }
         public bool Ligue1 { get; set; }
+        public bool ChampionsLeague { get; set; }
+        public bool Nation { get; set; }
     }
 }

@@ -21,6 +21,8 @@ namespace api.Mappers
                 SerieA = playerModel.SerieA,
                 Bundesliga = playerModel.Bundesliga,
                 Ligue1 = playerModel.Ligue1,
+                ChampionsLeague = playerModel.ChampionsLeague,
+                Nation = playerModel.Nation,
             };
         }
         public static Player ToPlayerFromPlayerDto(this CreatePlayerRequestDto playerDto)
@@ -34,6 +36,8 @@ namespace api.Mappers
                 SerieA = playerDto.SerieA,
                 Bundesliga = playerDto.Bundesliga,
                 Ligue1 = playerDto.Ligue1,
+                ChampionsLeague = playerDto.ChampionsLeague,
+                Nation = playerDto.Nation,
             };
         }
     }

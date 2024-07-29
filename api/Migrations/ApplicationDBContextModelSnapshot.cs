@@ -21,6 +21,27 @@ namespace api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("api.Models.Club", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clubs");
+                });
+
             modelBuilder.Entity("api.Models.Player", b =>
                 {
                     b.Property<int>("Id")
@@ -30,6 +51,9 @@ namespace api.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Bundesliga")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ChampionsLeague")
                         .HasColumnType("bit");
 
                     b.Property<string>("ImagePath")
@@ -45,6 +69,9 @@ namespace api.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Nation")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("PremierLeague")
                         .HasColumnType("bit");

@@ -15,5 +15,6 @@ namespace api.Data
         }
 
         public DbSet<Player> Players { get; set; }
+        public DbSet<Club> Clubs { get; set; }
     }
 }

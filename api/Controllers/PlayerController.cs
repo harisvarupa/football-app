@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos;
+using api.Interfaces;
 using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,17 @@ namespace api.Controllers
     public class PlayerController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public PlayerController(ApplicationDBContext context)
+        private readonly IPlayerRepository _playerRepo;
+        public PlayerController(ApplicationDBContext context, IPlayerRepository playerRepo)
         {
             _context = context;
+            _playerRepo = playerRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var players = await _context.Players.ToListAsync();
+            var players = await _playerRepo.GetAll();
             var playerDto = players.Select(s => s.ToPlayerDto());
             return Ok(players);
         }
@@ -68,6 +71,8 @@ namespace api.Controllers
             playerModel.SerieA = updateDto.SerieA;
             playerModel.Bundesliga = updateDto.Bundesliga;
             playerModel.Ligue1 = updateDto.Ligue1;
+            playerModel.ChampionsLeague = updateDto.ChampionsLeague;
+            playerModel.Nation = updateDto.Nation;
 
             await _context.SaveChangesAsync();
             return Ok(playerModel.ToPlayerDto());
