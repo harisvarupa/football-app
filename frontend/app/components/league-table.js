@@ -1,5 +1,7 @@
 "use client";
 import LeagueItem from "./league-item";
+import axios from "axios";
+import MainContent from "../main-content";
 
 export default function LeagueTable() {
   return (
