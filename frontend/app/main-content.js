@@ -6,30 +6,41 @@ import LeagueItem from "./components/league-item";
 import Navbar from "./components/navbar";
 
 export default function MainContent() {
-  const [player, setRandomPlayer] = useState("");
+  const [randomPlayer, setRandomPlayer] = useState("");
   let [showImage, setShowImage] = useState(true);
-  let [isActive, setIsActive] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [playerSelected, setPlayerSelected] = useState(false);
+  const [plPlayer, setPlPlayer] = useState(
+    "/images/leagues/premier-league.png"
+  );
+
+  var playerId = Math.floor(Math.random() * 5 + 1);
 
   const getRandomPlayer = () => {
     setShowImage(false);
-    setIsActive(true);
-    var playerId = Math.floor(Math.random() * 5 + 1);
     axios
       .get(`http://localhost:5176/api/player/${playerId}`)
       .then((res) => {
-        console.log(isActive);
-        console.log(res.data);
         setRandomPlayer(res.data);
+        setGameStarted(true);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const getPlPlayer = (league) => {
+    if (league == true) {
+      setPlPlayer(`/images/players/${randomPlayer.imagePath}`);
+      setPlayerSelected(true);
+    }
+  };
+
   return (
     <>
       <Navbar />
-      <div className="flex flex-col h-screen w-screen-xl items-center justify-center">
+      <div className="flex flex-col h-auto w-screen-xl items-center justify-center">
         <div className="flex flex-col w-[90%] py-4 items-center justify-center">
           {showImage ? (
             <Image
@@ -41,26 +52,43 @@ export default function MainContent() {
             />
           ) : (
             <Image
-              src={`/images/players/${player.imagePath}`}
+              src={`/images/players/${randomPlayer.imagePath}`}
               width={220}
               height={220}
               alt="player image"
               className="mb-10"
             />
           )}
-          <button
-            onClick={getRandomPlayer}
-            className="bg-pink-800 hover:bg-pink-700 text-white font-bold py-2 px-4 border-b-4 border-pink-900 hover:border-pink-800 rounded"
-          >
-            Start Game
-          </button>
+          {!gameStarted ? (
+            <button
+              onClick={getRandomPlayer}
+              className="bg-pink-800 hover:bg-pink-700 text-white font-bold py-2 px-4 border-b-4 border-pink-900 hover:border-pink-800 rounded"
+            >
+              Start Game
+            </button>
+          ) : (
+            <button
+              onClick={getRandomPlayer}
+              className="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-2 px-4 border-b-4 border-yellow-700 hover:border-yellow-600 rounded"
+            >
+              Next Player →
+            </button>
+          )}
         </div>
         <div className="flex w-[90%] h-full items-center justify-center">
-          <div className="grid grid-cols-5 grid-rows-3 gap-4 w-auto h-auto">
+          <div className="grid grid-cols-5 grid-rows-3 gap-4 h-[100%] w-[60%]">
             <LeagueItem
-              imagePath="/images/leagues/premier-league.png"
+              onClick={() => {
+                getPlPlayer(randomPlayer.premierLeague);
+              }}
+              imagePath={plPlayer}
               altText="premier league logo"
-              width="200"
+              width={playerSelected ? "90" : "200"}
+              bg={
+                playerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15"
+              }
             />
             <LeagueItem
               imagePath="/images/leagues/la-liga.png"
