@@ -4,15 +4,24 @@ import axios from "axios";
 import Image from "next/image";
 import LeagueItem from "./components/league-item";
 import Navbar from "./components/navbar";
+import ParticlesComponent from "./components/particles";
 
 export default function MainContent() {
   const [randomPlayer, setRandomPlayer] = useState("");
   let [showImage, setShowImage] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
-  const [playerSelected, setPlayerSelected] = useState(false);
+  const [plPlayerSelected, setPlPlayerSelected] = useState(false);
   const [plPlayer, setPlPlayer] = useState(
     "/images/leagues/premier-league.png"
   );
+  const [llPlayerSelected, setLlPlayerSelected] = useState(false);
+  const [llPlayer, setLlPlayer] = useState("/images/leagues/la-liga.png");
+  const [saPlayerSelected, setSaPlayerSelected] = useState(false);
+  const [saPlayer, setSaPlayer] = useState("/images/leagues/seria-a.png");
+  const [blPlayerSelected, setBlPlayerSelected] = useState(false);
+  const [blPlayer, setBlPlayer] = useState("/images/leagues/bundesliga.png");
+  const [l1PlayerSelected, setL1PlayerSelected] = useState(false);
+  const [l1Player, setL1Player] = useState("/images/leagues/league1.png");
 
   var playerId = Math.floor(Math.random() * 5 + 1);
 
@@ -33,15 +42,40 @@ export default function MainContent() {
   const getPlPlayer = (league) => {
     if (league == true) {
       setPlPlayer(`/images/players/${randomPlayer.imagePath}`);
-      setPlayerSelected(true);
+      setPlPlayerSelected(true);
+    }
+  };
+  const getLlPlayer = (league) => {
+    if (league == true) {
+      setLlPlayer(`/images/players/${randomPlayer.imagePath}`);
+      setLlPlayerSelected(true);
+    }
+  };
+  const getSaPlayer = (league) => {
+    if (league == true) {
+      setSaPlayer(`/images/players/${randomPlayer.imagePath}`);
+      setSaPlayerSelected(true);
+    }
+  };
+  const getBlPlayer = (league) => {
+    if (league == true) {
+      setBlPlayer(`/images/players/${randomPlayer.imagePath}`);
+      setBlPlayerSelected(true);
+    }
+  };
+  const getL1Player = (league) => {
+    if (league == true) {
+      setL1Player(`/images/players/${randomPlayer.imagePath}`);
+      setL1PlayerSelected(true);
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className="flex flex-col h-auto w-screen-xl items-center justify-center">
-        <div className="flex flex-col w-[90%] py-4 items-center justify-center">
+      <ParticlesComponent id="particles" className="z-0" />
+      <div className="flex flex-col h-auto w-screen-xl items-center justify-center z-10">
+        <div className="flex flex-col w-[90%] py-4 items-center justify-center z-10">
           {showImage ? (
             <Image
               src={`/images/player_outline.png`}
@@ -83,57 +117,114 @@ export default function MainContent() {
               }}
               imagePath={plPlayer}
               altText="premier league logo"
-              width={playerSelected ? "90" : "200"}
+              width={plPlayerSelected ? "90" : "200"}
               bg={
-                playerSelected
-                  ? "bg-lime-500 border-lime-700 bg-opacity-25"
-                  : "bg-pink-800 border-pink-900 bg-opacity-15"
+                plPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
               }
             />
             <LeagueItem
-              imagePath="/images/leagues/la-liga.png"
+              onClick={() => {
+                getLlPlayer(randomPlayer.laLiga);
+              }}
+              imagePath={llPlayer}
               altText="la liga logo"
-              width="95"
+              width="90"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
-              imagePath="/images/leagues/seria-a.png"
+              onClick={() => {
+                getSaPlayer(randomPlayer.serieA);
+              }}
+              imagePath={saPlayer}
               altText="seria a logo"
-              width="130"
+              width={saPlayerSelected ? "93" : "130"}
+              bg={
+                saPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
-              imagePath="/images/leagues/bundesliga.png"
+              onClick={() => {
+                getBlPlayer(randomPlayer.bundesliga);
+              }}
+              imagePath={blPlayer}
               altText="bundesliga logo"
-              width="170"
+              width={blPlayerSelected ? "93" : "170"}
+              bg={
+                blPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
-              imagePath="/images/leagues/league1.png"
+              onClick={() => {
+                getL1Player(randomPlayer.ligue1);
+              }}
+              imagePath={l1Player}
               altText="league1 logo"
-              width="180"
+              width={l1PlayerSelected ? "93" : "180"}
+              bg={
+                l1PlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
               imagePath="/images/leagues/champions-league.png"
               altText="premier league logo"
               width="110"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
               imagePath="/images/clubs/ac-milan.png"
               altText="la liga logo"
               width="100"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
               imagePath="/images/clubs/real-madrid.png"
               altText="seria a logo"
               width="120"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
               imagePath="/images/clubs/manchester-united.png"
               altText="bundesliga logo"
               width="90"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
             <LeagueItem
               imagePath="/images/nations/brazil.png"
               altText="league1 logo"
               width="100"
+              bg={
+                llPlayerSelected
+                  ? "bg-lime-500 border-lime-700 bg-opacity-25 hover:bg-lime-600"
+                  : "bg-pink-800 border-pink-900 bg-opacity-15 hover:bg-pink-800"
+              }
             />
           </div>
         </div>

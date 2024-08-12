@@ -2,7 +2,7 @@
 
 export default function Navbar() {
   return (
-    <nav class=" sticky top-0 backdrop-blur-md">
+    <nav class=" sticky top-0 backdrop-blur-md z-10">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
